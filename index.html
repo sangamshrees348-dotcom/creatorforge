@@ -4,351 +4,827 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>CreatorForge - Free Creator Tools</title>
-  <meta name="description" content="Free YouTube and creator tools including title, description, hashtag, word and character generators.">
+  <title>CreatorForge — Free Creator Tools</title>
+
+  <meta name="description" content="Free and simple online tools for YouTubers, content creators, students and digital creators.">
 
   <style>
+    :root {
+      --bg: #070b14;
+      --card: #101827;
+      --card2: #0c1320;
+      --text: #f7f8fc;
+      --muted: #9ca7ba;
+      --line: #202c40;
+      --purple: #7c5cff;
+      --purple2: #a06cff;
+      --green: #25d0ab;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      background: #0b0f19;
-      color: #fff;
+      background:
+        radial-gradient(circle at 50% -20%, #21184a 0, #070b14 45%);
+      color: var(--text);
       line-height: 1.6;
     }
 
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAVBAR */
+
     header {
-      padding: 20px 7%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 11, 20, 0.85);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .nav {
+      max-width: 1150px;
+      margin: auto;
+      padding: 17px 22px;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #202637;
     }
 
     .logo {
-      font-size: 25px;
-      font-weight: bold;
+      font-size: 24px;
+      font-weight: 800;
     }
 
-    nav a {
-      color: #aaa;
-      text-decoration: none;
-      margin-left: 20px;
+    .logo span {
+      color: var(--purple);
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+      color: var(--muted);
+      font-size: 14px;
     }
 
     nav a:hover {
-      color: #fff;
+      color: white;
     }
+
+    /* HERO */
 
     .hero {
+      max-width: 900px;
+      margin: auto;
       text-align: center;
-      padding: 80px 20px 50px;
+      padding: 90px 20px 65px;
     }
 
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 15px;
+    .badge {
+      display: inline-block;
+
+      padding: 7px 14px;
+
+      border: 1px solid #39315f;
+      background: #15112d;
+
+      border-radius: 999px;
+
+      color: #c9c3ff;
+
+      font-size: 13px;
+
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -3px;
+      margin-bottom: 22px;
+    }
+
+    .gradient {
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff,
+          #9f91ff,
+          #61e8ca
+        );
+
+      -webkit-background-clip: text;
+      color: transparent;
     }
 
     .hero p {
-      color: #aaa;
-      max-width: 650px;
+      max-width: 680px;
       margin: auto;
+
+      color: var(--muted);
+
       font-size: 18px;
     }
 
-    .tools {
-      max-width: 1100px;
-      margin: 30px auto 80px;
-      padding: 0 20px;
+    /* SECTION */
+
+    .section {
+      max-width: 1150px;
+      margin: auto;
+
+      padding: 30px 22px 80px;
+    }
+
+    .section-head {
+      margin-bottom: 25px;
+    }
+
+    .section-head h2 {
+      font-size: 30px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+    }
+
+    /* TOOLS */
+
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(290px, 1fr));
+
+      gap: 18px;
     }
 
-    .tool {
-      background: #121827;
-      border: 1px solid #222b3e;
-      border-radius: 15px;
-      padding: 25px;
+    .card {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(16,24,39,.97),
+          rgba(10,16,27,.97)
+        );
+
+      border: 1px solid var(--line);
+
+      border-radius: 18px;
+
+      padding: 22px;
+
+      box-shadow:
+        0 15px 45px rgba(0,0,0,.18);
+
+      transition: .2s;
     }
 
-    .tool h2 {
-      margin-bottom: 10px;
-      font-size: 21px;
+    .card:hover {
+      transform: translateY(-3px);
+
+      border-color: #3b4963;
     }
 
-    .tool p {
-      color: #999;
+    .icon {
+      font-size: 27px;
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      font-size: 19px;
+      margin-bottom: 5px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
       margin-bottom: 15px;
     }
 
-    textarea,
+    /* INPUT */
+
     input,
+    textarea,
     select {
       width: 100%;
-      padding: 12px;
-      margin-bottom: 12px;
-      border: 1px solid #30394d;
-      background: #0b0f19;
+
+      background: #080e18;
+
       color: white;
-      border-radius: 8px;
+
+      border: 1px solid #2a374d;
+
+      border-radius: 10px;
+
+      padding: 12px;
+
+      margin-bottom: 10px;
+
       outline: none;
     }
 
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #6959d5;
+    }
+
     textarea {
-      min-height: 120px;
+      min-height: 105px;
       resize: vertical;
     }
 
+    /* BUTTON */
+
     button {
       width: 100%;
+
       padding: 12px;
+
       border: none;
-      border-radius: 8px;
-      background: #fff;
-      color: #000;
-      font-weight: bold;
+
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--purple),
+          var(--purple2)
+        );
+
+      color: white;
+
+      font-weight: 700;
+
       cursor: pointer;
     }
 
     button:hover {
-      opacity: .85;
+      filter: brightness(1.12);
     }
+
+    /* RESULT */
 
     .result {
-      margin-top: 12px;
+      margin-top: 10px;
+
       padding: 12px;
-      background: #0b0f19;
-      border-radius: 8px;
-      color: #ccc;
-      min-height: 45px;
+
+      min-height: 48px;
+
+      background: #080e18;
+
+      border: 1px solid #202c40;
+
+      border-radius: 10px;
+
+      color: #d8deea;
+
       white-space: pre-wrap;
+
+      font-size: 14px;
     }
+
+    /* ABOUT */
+
+    .info {
+      max-width: 850px;
+
+      margin: auto;
+
+      text-align: center;
+
+      padding: 20px 22px 75px;
+    }
+
+    .info p {
+      color: var(--muted);
+
+      margin-top: 8px;
+    }
+
+    /* FOOTER */
 
     footer {
+      border-top: 1px solid var(--line);
+
+      padding: 30px 20px;
+
       text-align: center;
-      padding: 30px;
-      border-top: 1px solid #202637;
-      color: #777;
+
+      color: #68758a;
+
+      font-size: 13px;
     }
 
-    @media(max-width:600px) {
-      .hero h1 {
-        font-size: 36px;
-      }
+    /* MOBILE */
+
+    @media(max-width:650px) {
 
       nav {
         display: none;
       }
+
+      .hero {
+        padding-top: 65px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
     }
+
   </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">CreatorForge</div>
 
-  <nav>
-    <a href="#tools">Tools</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<!-- NAVBAR -->
+
+<header>
+
+  <div class="nav">
+
+    <a class="logo" href="#">
+      Creator<span>Forge</span>
+    </a>
+
+    <nav>
+      <a href="#tools">Tools</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+  </div>
+
 </header>
 
+
+
+<!-- HERO -->
+
 <section class="hero">
-  <h1>Free Tools for Creators</h1>
+
+  <div class="badge">
+    ⚡ Free tools for creators
+  </div>
+
+  <h1>
+    Create faster with
+    <span class="gradient">
+      CreatorForge
+    </span>
+  </h1>
+
   <p>
-    Simple and powerful tools for YouTubers, content creators,
-    students and digital creators.
+    Simple, fast and free tools for YouTubers,
+    content creators, students and digital creators.
   </p>
+
 </section>
 
-<section class="tools" id="tools">
 
-  <!-- TITLE GENERATOR -->
-  <div class="tool">
-    <h2>🎬 YouTube Title Generator</h2>
-    <p>Generate title ideas for your videos.</p>
 
-    <input id="titleTopic" placeholder="Example: AI horror story">
+<!-- TOOLS -->
 
-    <button onclick="generateTitles()">Generate Titles</button>
+<section class="section" id="tools">
 
-    <div class="result" id="titleResult"></div>
+  <div class="section-head">
+
+    <h2>
+      Free Creator Tools
+    </h2>
+
+    <p>
+      Use the tools instantly — no signup required.
+    </p>
+
   </div>
 
 
-  <!-- DESCRIPTION GENERATOR -->
-  <div class="tool">
-    <h2>📝 Description Generator</h2>
-    <p>Create a simple YouTube description.</p>
-
-    <input id="descTopic" placeholder="Video topic">
-
-    <button onclick="generateDescription()">Generate Description</button>
-
-    <div class="result" id="descResult"></div>
-  </div>
+  <div class="grid">
 
 
-  <!-- HASHTAG GENERATOR -->
-  <div class="tool">
-    <h2>#️⃣ Hashtag Generator</h2>
-    <p>Generate hashtags from your topic.</p>
+    <!-- TITLE -->
 
-    <input id="hashTopic" placeholder="Example: horror story">
+    <div class="card">
 
-    <button onclick="generateHashtags()">Generate Hashtags</button>
+      <div class="icon">
+        🎬
+      </div>
 
-    <div class="result" id="hashResult"></div>
-  </div>
+      <h3>
+        YouTube Title Generator
+      </h3>
 
+      <p>
+        Generate quick title ideas from any topic.
+      </p>
 
-  <!-- WORD COUNTER -->
-  <div class="tool">
-    <h2>🔢 Word Counter</h2>
-    <p>Count words and characters instantly.</p>
+      <input
+        id="titleTopic"
+        placeholder="Example: AI horror story"
+      >
 
-    <textarea id="wordText" oninput="countWords()"
-      placeholder="Type or paste your text..."></textarea>
+      <button onclick="generateTitles()">
+        Generate Titles
+      </button>
 
-    <div class="result" id="wordResult">
-      Words: 0
-      Characters: 0
+      <div
+        class="result"
+        id="titleResult">
+      </div>
+
     </div>
-  </div>
 
 
-  <!-- CHARACTER COUNTER -->
-  <div class="tool">
-    <h2>🔤 Character Counter</h2>
-    <p>Count characters in your text.</p>
 
-    <textarea id="charText" oninput="countCharacters()"
-      placeholder="Type your text..."></textarea>
+    <!-- DESCRIPTION -->
 
-    <div class="result" id="charResult">
-      Characters: 0
+    <div class="card">
+
+      <div class="icon">
+        📝
+      </div>
+
+      <h3>
+        YouTube Description Generator
+      </h3>
+
+      <p>
+        Create a ready-to-edit video description.
+      </p>
+
+      <input
+        id="descTopic"
+        placeholder="Example: horror story"
+      >
+
+      <button onclick="generateDescription()">
+        Generate Description
+      </button>
+
+      <div
+        class="result"
+        id="descResult">
+      </div>
+
     </div>
+
+
+
+    <!-- HASHTAGS -->
+
+    <div class="card">
+
+      <div class="icon">
+        #️⃣
+      </div>
+
+      <h3>
+        Hashtag Generator
+      </h3>
+
+      <p>
+        Generate useful starter hashtags.
+      </p>
+
+      <input
+        id="hashTopic"
+        placeholder="Example: music"
+      >
+
+      <button onclick="generateHashtags()">
+        Generate Hashtags
+      </button>
+
+      <div
+        class="result"
+        id="hashResult">
+      </div>
+
+    </div>
+
+
+
+    <!-- WORD COUNTER -->
+
+    <div class="card">
+
+      <div class="icon">
+        🔢
+      </div>
+
+      <h3>
+        Word Counter
+      </h3>
+
+      <p>
+        Count words and characters instantly.
+      </p>
+
+      <textarea
+        id="wordText"
+        oninput="countWords()"
+        placeholder="Paste your text here..."
+      ></textarea>
+
+      <div
+        class="result"
+        id="wordResult">
+        Words: 0
+        Characters: 0
+      </div>
+
+    </div>
+
+
+
+    <!-- CHARACTER -->
+
+    <div class="card">
+
+      <div class="icon">
+        🔤
+      </div>
+
+      <h3>
+        Character Counter
+      </h3>
+
+      <p>
+        Count every character in your text.
+      </p>
+
+      <textarea
+        id="charText"
+        oninput="countCharacters()"
+        placeholder="Type your text..."
+      ></textarea>
+
+      <div
+        class="result"
+        id="charResult">
+        Characters: 0
+      </div>
+
+    </div>
+
+
+
+    <!-- CASE -->
+
+    <div class="card">
+
+      <div class="icon">
+        🔠
+      </div>
+
+      <h3>
+        Text Case Converter
+      </h3>
+
+      <p>
+        Convert text into different cases.
+      </p>
+
+      <textarea
+        id="caseText"
+        placeholder="Enter your text..."
+      ></textarea>
+
+      <select id="caseSelect">
+
+        <option value="upper">
+          UPPERCASE
+        </option>
+
+        <option value="lower">
+          lowercase
+        </option>
+
+        <option value="title">
+          Title Case
+        </option>
+
+      </select>
+
+      <button onclick="convertCase()">
+        Convert Text
+      </button>
+
+      <div
+        class="result"
+        id="caseResult">
+      </div>
+
+    </div>
+
+
   </div>
 
-
-  <!-- TEXT CASE -->
-  <div class="tool">
-    <h2>🔠 Text Case Converter</h2>
-    <p>Convert your text to different cases.</p>
-
-    <textarea id="caseText"
-      placeholder="Enter your text..."></textarea>
-
-    <select id="caseSelect">
-      <option value="upper">UPPERCASE</option>
-      <option value="lower">lowercase</option>
-      <option value="title">Title Case</option>
-    </select>
-
-    <button onclick="convertCase()">Convert</button>
-
-    <div class="result" id="caseResult"></div>
-  </div>
-
 </section>
 
 
-<section id="about" style="max-width:900px;margin:60px auto;padding:20px;">
-  <h2>About CreatorForge</h2>
-  <p style="color:#aaa;margin-top:10px;">
-    CreatorForge provides simple and free tools designed to help
-    content creators work faster and smarter.
+
+<!-- ABOUT -->
+
+<section
+  class="info"
+  id="about">
+
+  <h2>
+    About CreatorForge
+  </h2>
+
+  <p>
+    CreatorForge is a simple collection
+    of free online tools designed to help
+    creators save time and work smarter.
   </p>
+
 </section>
 
 
-<section id="contact" style="max-width:900px;margin:60px auto;padding:20px;">
-  <h2>Contact</h2>
-  <p style="color:#aaa;margin-top:10px;">
-    For questions and suggestions, contact us through our official
-    social channels.
+
+<!-- CONTACT -->
+
+<section
+  class="info"
+  id="contact">
+
+  <h2>
+    Contact
+  </h2>
+
+  <p>
+    For feedback, suggestions or business
+    inquiries, add your contact email here.
   </p>
+
 </section>
 
+
+
+<!-- FOOTER -->
 
 <footer>
-  © 2026 CreatorForge. All rights reserved.
+
+  © 2026 CreatorForge ·
+  Free tools for creators
+
 </footer>
 
 
+
+<!-- JAVASCRIPT -->
+
 <script>
+
 
 function generateTitles() {
 
-  let topic = document.getElementById("titleTopic").value.trim();
+  let topic =
+    document.getElementById(
+      "titleTopic"
+    ).value.trim();
+
+  let result =
+    document.getElementById(
+      "titleResult"
+    );
 
   if (!topic) {
-    document.getElementById("titleResult").innerText =
+
+    result.innerText =
       "Please enter a topic.";
+
     return;
   }
 
+
   let titles = [
+
     "The Ultimate Guide to " + topic,
-    "I Tried " + topic + " — Here's What Happened",
-    "You Won't Believe This About " + topic,
-    "10 Things You Need to Know About " + topic,
-    "The Truth About " + topic
+
+    "I Tried " +
+    topic +
+    " — Here's What Happened",
+
+    "The Truth About " +
+    topic,
+
+    "10 Things You Need to Know About " +
+    topic,
+
+    "Why Everyone Is Talking About " +
+    topic
+
   ];
 
-  document.getElementById("titleResult").innerText =
+
+  result.innerText =
     titles.join("\n");
+
 }
+
 
 
 function generateDescription() {
 
-  let topic = document.getElementById("descTopic").value.trim();
+  let topic =
+    document.getElementById(
+      "descTopic"
+    ).value.trim();
+
+  let result =
+    document.getElementById(
+      "descResult"
+    );
+
 
   if (!topic) {
-    document.getElementById("descResult").innerText =
+
+    result.innerText =
       "Please enter a topic.";
+
     return;
   }
 
-  let description =
+
+  result.innerText =
+
     "Welcome to CreatorForge!\n\n" +
-    "In this video, we explore " + topic +
+
+    "In this video, we explore " +
+    topic +
     " and share useful information, ideas and tips.\n\n" +
+
     "If you enjoyed this video, don't forget to like, " +
     "subscribe and turn on notifications.\n\n" +
-    "#YouTube #Creator #Content";
 
-  document.getElementById("descResult").innerText =
-    description;
+    "#YouTube #Creator #ContentCreator";
+
 }
+
 
 
 function generateHashtags() {
 
-  let topic = document.getElementById("hashTopic").value.trim();
+  let topic =
+    document.getElementById(
+      "hashTopic"
+    ).value.trim();
+
+  let result =
+    document.getElementById(
+      "hashResult"
+    );
+
 
   if (!topic) {
-    document.getElementById("hashResult").innerText =
+
+    result.innerText =
       "Please enter a topic.";
+
     return;
   }
 
-  let words = topic
-    .split(" ")
-    .filter(word => word.length > 0);
 
-  let hashtags = words.map(word =>
-    "#" + word.replace(/[^a-zA-Z0-9]/g, "")
-  );
+  let words =
+    topic.split(/\s+/);
+
+
+  let hashtags =
+    words.map(function(word) {
+
+      return "#" +
+        word.replace(
+          /[^a-zA-Z0-9]/g,
+          ""
+        );
+
+    });
+
 
   hashtags.push(
     "#YouTube",
@@ -357,61 +833,118 @@ function generateHashtags() {
     "#Viral"
   );
 
-  document.getElementById("hashResult").innerText =
+
+  result.innerText =
     hashtags.join(" ");
+
 }
+
 
 
 function countWords() {
 
-  let text = document.getElementById("wordText").value;
+  let text =
+    document.getElementById(
+      "wordText"
+    ).value;
 
-  let words = text.trim() ?
-    text.trim().split(/\s+/).length : 0;
 
-  let characters = text.length;
+  let words =
+    text.trim()
+      ? text.trim().split(/\s+/).length
+      : 0;
 
-  document.getElementById("wordResult").innerText =
-    "Words: " + words +
-    "\nCharacters: " + characters;
+
+  document.getElementById(
+    "wordResult"
+  ).innerText =
+
+    "Words: " +
+    words +
+
+    "\nCharacters: " +
+    text.length;
+
 }
+
 
 
 function countCharacters() {
 
-  let text = document.getElementById("charText").value;
+  let text =
+    document.getElementById(
+      "charText"
+    ).value;
 
-  document.getElementById("charResult").innerText =
-    "Characters: " + text.length;
+
+  document.getElementById(
+    "charResult"
+  ).innerText =
+
+    "Characters: " +
+    text.length;
+
 }
+
 
 
 function convertCase() {
 
-  let text = document.getElementById("caseText").value;
+  let text =
+    document.getElementById(
+      "caseText"
+    ).value;
 
-  let type = document.getElementById("caseSelect").value;
 
-  let result = "";
+  let type =
+    document.getElementById(
+      "caseSelect"
+    ).value;
+
+
+  let result = text;
+
 
   if (type === "upper") {
-    result = text.toUpperCase();
+
+    result =
+      text.toUpperCase();
+
   }
+
 
   if (type === "lower") {
-    result = text.toLowerCase();
+
+    result =
+      text.toLowerCase();
+
   }
+
 
   if (type === "title") {
-    result = text.toLowerCase().replace(/\b\w/g,
-      letter => letter.toUpperCase());
+
+    result =
+      text
+      .toLowerCase()
+      .replace(
+        /\b\w/g,
+        function(letter) {
+          return letter.toUpperCase();
+        }
+      );
+
   }
 
-  document.getElementById("caseResult").innerText =
+
+  document.getElementById(
+    "caseResult"
+  ).innerText =
     result;
+
 }
 
 </script>
+
 
 </body>
 </html>
